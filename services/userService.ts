@@ -4,9 +4,11 @@ import { ApiResponse, IUser } from "@/types";
 export const userService = {
   /**
    * Get all users in tenant
+   * @param queryParams Optional query parameters (e.g., "?tenantId=xxx")
    */
-  async getAll(): Promise<ApiResponse<IUser[]>> {
-    const response = await axiosInstance.get<ApiResponse<IUser[]>>("/users");
+  async getAll(queryParams?: string): Promise<ApiResponse<IUser[]>> {
+    const url = queryParams ? `/users${queryParams}` : "/users";
+    const response = await axiosInstance.get<ApiResponse<IUser[]>>(url);
     return response.data;
   },
 

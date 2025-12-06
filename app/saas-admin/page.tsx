@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import ProtectedRoute from "@/components/shared/ProtectedRoute";
 import DashboardLayout from "@/components/shared/DashboardLayout";
 import { UserRole, ITenant, TenantPlan, TenantStatus } from "@/types";
@@ -16,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 
 export default function SaasAdminDashboard() {
+  const router = useRouter();
   const [tenants, setTenants] = useState<ITenant[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -219,7 +221,11 @@ export default function SaasAdminDashboard() {
                   </TableHeader>
                   <TableBody>
                     {tenants.map((tenant) => (
-                      <TableRow key={tenant._id.toString()}>
+                      <TableRow
+                        key={tenant._id.toString()}
+                        className="cursor-pointer hover:bg-slate-50"
+                        onClick={() => router.push(`/saas-admin/tenants/${tenant._id}`)}
+                      >
                         <TableCell className="font-medium">{tenant.name}</TableCell>
                         <TableCell>{tenant.domain || "-"}</TableCell>
                         <TableCell>

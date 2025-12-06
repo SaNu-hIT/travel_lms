@@ -15,95 +15,151 @@ export interface NavItem {
   href: string;
   icon: LucideIcon;
   badge?: string | number;
+  children?: NavItem[];
 }
 
-export const navigationConfig: Record<UserRole, NavItem[]> = {
+export interface NavSection {
+  section: string;
+  items: NavItem[];
+}
+
+export const navigationConfig: Record<UserRole, NavSection[]> = {
   [UserRole.SAAS_ADMIN]: [
     {
-      title: "Dashboard",
-      href: "/saas-admin",
-      icon: LayoutDashboard,
+      section: "Main",
+      items: [
+        {
+          title: "Dashboard",
+          href: "/saas-admin",
+          icon: LayoutDashboard,
+        },
+        {
+          title: "Tenants",
+          href: "/saas-admin",
+          icon: Building2,
+        },
+      ],
     },
     {
-      title: "Tenants",
-      href: "/saas-admin",
-      icon: Building2,
+      section: "Analytics",
+      items: [
+        {
+          title: "Reports",
+          href: "/saas-admin",
+          icon: BarChart3,
+        },
+      ],
     },
     {
-      title: "Analytics",
-      href: "/saas-admin",
-      icon: BarChart3,
-    },
-    {
-      title: "Settings",
-      href: "/saas-admin",
-      icon: Settings,
+      section: "Settings",
+      items: [
+        {
+          title: "Configuration",
+          href: "/saas-admin",
+          icon: Settings,
+        },
+      ],
     },
   ],
   [UserRole.ADMIN]: [
     {
-      title: "Dashboard",
-      href: "/company-admin",
-      icon: LayoutDashboard,
+      section: "Main",
+      items: [
+        {
+          title: "Dashboard",
+          href: "/company-admin",
+          icon: LayoutDashboard,
+        },
+        {
+          title: "Leads",
+          href: "/company-admin",
+          icon: FileText,
+        },
+        {
+          title: "Users",
+          href: "/company-admin",
+          icon: Users,
+        },
+      ],
     },
     {
-      title: "Leads",
-      href: "/company-admin",
-      icon: FileText,
+      section: "Analytics",
+      items: [
+        {
+          title: "Reports",
+          href: "/company-admin",
+          icon: BarChart3,
+        },
+      ],
     },
     {
-      title: "Users",
-      href: "/company-admin",
-      icon: Users,
-    },
-    {
-      title: "Reports",
-      href: "/company-admin",
-      icon: BarChart3,
-    },
-    {
-      title: "Settings",
-      href: "/company-admin",
-      icon: Settings,
+      section: "Settings",
+      items: [
+        {
+          title: "Configuration",
+          href: "/company-admin",
+          icon: Settings,
+        },
+      ],
     },
   ],
   [UserRole.MANAGER]: [
     {
-      title: "Dashboard",
-      href: "/manager",
-      icon: LayoutDashboard,
+      section: "Main",
+      items: [
+        {
+          title: "Dashboard",
+          href: "/manager",
+          icon: LayoutDashboard,
+        },
+        {
+          title: "Team Leads",
+          href: "/manager",
+          icon: FileText,
+        },
+        {
+          title: "My Team",
+          href: "/manager",
+          icon: Users,
+        },
+      ],
     },
     {
-      title: "Team Leads",
-      href: "/manager",
-      icon: FileText,
-    },
-    {
-      title: "My Team",
-      href: "/manager",
-      icon: Users,
-    },
-    {
-      title: "Reports",
-      href: "/manager",
-      icon: BarChart3,
+      section: "Analytics",
+      items: [
+        {
+          title: "Reports",
+          href: "/manager",
+          icon: BarChart3,
+        },
+      ],
     },
   ],
   [UserRole.EMPLOYEE]: [
     {
-      title: "Dashboard",
-      href: "/employee",
-      icon: LayoutDashboard,
+      section: "Main",
+      items: [
+        {
+          title: "Dashboard",
+          href: "/employee",
+          icon: LayoutDashboard,
+        },
+        {
+          title: "My Leads",
+          href: "/employee",
+          icon: FileText,
+        },
+      ],
     },
     {
-      title: "My Leads",
-      href: "/employee",
-      icon: FileText,
-    },
-    {
-      title: "Activity",
-      href: "/employee",
-      icon: UserCircle,
+      section: "Activity",
+      items: [
+        {
+          title: "My Activity",
+          href: "/employee",
+          icon: UserCircle,
+        },
+      ],
     },
   ],
 };
