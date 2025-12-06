@@ -261,7 +261,7 @@ export default function TenantDetailPage() {
                 <div className="text-center py-8 text-slate-500">
                   <p>No admin users found for this company</p>
                   <p className="text-sm mt-1">
-                    Click "Add Admin User" to create the first administrator
+                    Click Add Admin User to create the first administrator
                   </p>
                 </div>
               ) : (

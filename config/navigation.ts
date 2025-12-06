@@ -72,12 +72,12 @@ export const navigationConfig: Record<UserRole, NavSection[]> = {
         },
         {
           title: "Leads",
-          href: "/company-admin",
+          href: "/company-admin/leads",
           icon: FileText,
         },
         {
           title: "Users",
-          href: "/company-admin",
+          href: "/company-admin/users",
           icon: Users,
         },
       ],
@@ -114,12 +114,12 @@ export const navigationConfig: Record<UserRole, NavSection[]> = {
         },
         {
           title: "Team Leads",
-          href: "/manager",
+          href: "/manager/leads",
           icon: FileText,
         },
         {
           title: "My Team",
-          href: "/manager",
+          href: "/manager/team",
           icon: Users,
         },
       ],
