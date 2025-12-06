@@ -80,7 +80,7 @@ export default function TenantDetailPage() {
     try {
       const response = await userService.create({
         ...adminForm,
-        tenantId,
+        // tenantId, 
         role: UserRole.ADMIN,
       });
 
