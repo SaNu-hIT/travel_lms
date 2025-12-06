@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
+import { DatePicker } from "@/components/ui/date-picker";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 
@@ -29,9 +30,12 @@ export default function EmployeeDashboard() {
   const { toast } = useToast();
 
   // Lead update form
-  const [leadUpdate, setLeadUpdate] = useState({
+  const [leadUpdate, setLeadUpdate] = useState<{
+    status: LeadStatus;
+    followUpDate?: Date;
+  }>({
     status: LeadStatus.NEW,
-    followUpDate: "",
+    followUpDate: undefined,
   });
 
   useEffect(() => {
@@ -63,7 +67,7 @@ export default function EmployeeDashboard() {
     setSelectedLead(lead);
     setLeadUpdate({
       status: lead.status,
-      followUpDate: lead.followUpDate ? format(new Date(lead.followUpDate), "yyyy-MM-dd") : "",
+      followUpDate: lead.followUpDate ? new Date(lead.followUpDate) : undefined,
     });
     setIsDialogOpen(true);
   };
@@ -279,12 +283,13 @@ export default function EmployeeDashboard() {
 
                     <div className="space-y-2">
                       <Label>Follow-up Date</Label>
-                      <Input
-                        type="date"
-                        value={leadUpdate.followUpDate}
-                        onChange={(e) =>
-                          setLeadUpdate({ ...leadUpdate, followUpDate: e.target.value })
+                      <DatePicker
+                        date={leadUpdate.followUpDate}
+                        onDateChange={(date) =>
+                          setLeadUpdate({ ...leadUpdate, followUpDate: date })
                         }
+                        placeholder="Select follow-up date"
+                        disablePastDates={true}
                       />
                     </div>
 
